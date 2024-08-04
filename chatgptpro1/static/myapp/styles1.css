@@ -1,0 +1,71 @@
+/* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Full height to center the login container */
+html, body {
+    height: 100%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:rgb(227, 141, 141);
+    color: rgb(130, 111, 111);
+}
+
+.wrapper{
+    background: rgb(158, 103, 114);
+    color:rgb(241, 238, 238);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+    border-radius: 15px;
+}
+
+.wrapper h1{
+    color:rgb(244, 164, 164);
+    padding-bottom:15px ;
+}
+
+.form-group{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.form-group label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input{
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border:1px solid black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    font-size: 17px;
+}
+
+button{
+    border: none;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid purple;
+}
+
+button a{    
+    text-decoration: none;
+    color:red;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+}
+
+::placeholder{
+    color: rgb(216, 126, 126);
+}

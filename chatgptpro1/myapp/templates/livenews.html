@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live News</title>
+</head>
+<body>
+    <style>
+        .main-content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .trending {
+            background-color: #91969a;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            display: flex;
+            align-items: center;
+            background-color: #ab9d9d;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .post img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .post-content {
+            max-width: calc(100% - 170px);
+        }
+
+        .post h3 {
+            margin: 0;
+            color: #db1b95;
+        }
+
+        .post p {
+            margin: 5px 0px;
+        }
+
+        .post-content a {
+            color: #e6eaef;
+            text-decoration: none;
+            font-weight: bold;
+            background: rgb(252, 249, 249);
+            color: black;
+            padding: 5px;
+            border: 1px solid #e8eaec;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .post-content a:hover {
+            background-color: #070707;
+            color: #fff;
+        }
+    </style>
+
+    <h1>Live News Is Ready!!!!!</h1>
+
+    <div class="main-content">
+        <div class="section trending">
+            <h2>Trending</h2>
+            {% for article in articles %}
+                <div class="post">
+                    <img src="{{ article.urlToImage|default:'https://via.placeholder.com/300' }}" alt="{{ article.title }}">
+                    <div class="post-content">
+                        <h3>{{ article.author }} -- {{ article.title }}</h3>
+                        <p>{{ article.description }} -- <strong>{{ article.publishedAt|date:"F j, Y, g:i a" }}</strong></p>
+                        <a href="{{ article.url }}">Click to Know More</a>
+                        <a href="{% url 'homepage' %}">HomePage</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

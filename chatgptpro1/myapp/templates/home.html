@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    {% load static %}
+    
+</head>
+<body>
+
+    <style>
+        /* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+   /*  background: url('{% static "images/default-image.jpeg" %}') no-repeat center center fixed; */
+    background-size: cover;
+    color: #333;
+}
+
+.header {
+    background: #000;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between; /* Adjusted for layout */
+    background-color: #000;
+    padding: 0.5em;
+}
+
+.nav-bar a,
+.nav-bar button {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.nav-bar a:hover,
+.nav-bar button:hover {
+    background-color: #ff0000; /* Red color */
+    transform: scale(1.05);
+}
+
+.nav-bar button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ff0000; /* Red color */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.main-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    flex-direction: column;
+}
+
+.section {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #ff0000; /* Red color */
+    margin-bottom: 15px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.post:hover {
+    transform: translateY(-5px);
+}
+
+.post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.post-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.post h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #ff0000; /* Red color */
+}
+
+.post p {
+    margin: 10px 0;
+}
+
+.post-content a {
+    color: #ff0000; /* Red color */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.post-content a:hover {
+    background-color: #ff0000; /* Red color */
+    color: #fff;
+}
+
+.before-login {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    padding: 0.5em;
+}
+
+.before-login a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.before-login a:hover {
+    background-color: #ff0000; /* Red color */
+    transform: scale(1.05);
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.footer a:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+.footer p {
+    margin: 5px 0 0;
+}
+
+    </style>
+
+    <div class="header">
+        <h1><a href="{% url 'homepage' %}">My Blog</a></h1>
+    </div>
+    
+        <div class="nav-bar">
+            <form action="{% url 'Logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            <a href="{% url 'loginform' %}">Login</a>
+            <a href="{% url 'registerform' %}">Register</a>
+            
+            <a href="{% if user.is_authenticated %}{% url 'profilepage' user.pk %}{% else %}{% url 'loginform' %}{% endif %}">Profile Page</a>
+
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Category</a>
+                <div class="dropdown-content">
+                    {% for cat in category %}
+                        <a href="{% url 'category_posts' cat.id %}">{{ cat.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section trending">
+                <h2>Trending</h2>
+                <div class="posts-container">
+                    {% for post in trending_posts %}
+                        <div class="post">
+                            <img src="https://via.placeholder.com/300" alt="{{ post.title }}">
+                            <div class="post-content">
+                                <h3>{{ post.title }} -- {{ post.category }}</h3>
+                                <p>{{ post.description }}</p>
+                                <a href="{% url 'detail_post' post.pk %}">Read More</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="section latest">
+                <h2>Latest</h2>
+                <div class="posts-container">
+                    {% for post in latest_posts %}
+                        <div class="post">
+                            <img src="https://via.placeholder.com/300" alt="{{ post.title }}">
+                            <div class="post-content">
+                                <h3>{{ post.title }} -- {{ post.category }}</h3>
+                                <p>{{ post.description }}</p>
+                                <a href="{% url 'detail_post' post.pk %}">Read More</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="section worldwide">
+                <h2>Worldwide</h2>
+                <div class="posts-container">
+                    {% for post in worldwide_posts %}
+                        <div class="post">
+                            <img src="https://via.placeholder.com/300" alt="{{ post.title }}">
+                            <div class="post-content">
+                                <h3>{{ post.title }} -- {{ post.category }}</h3>
+                                <p>{{ post.description }}</p>
+                                <a href="{% url 'detail_post' post.pk %}">Read More</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        
+   
+
+    <div class="footer">
+        <a href="{% url 'about_page' %}">About</a>
+        <a href="{% url 'contact-page' %}">Contact Us</a>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<title>{{article.title_tag}}</title>
+<link rel="stylesheet" href="{% static 'myapp/post_details.css' %}">
+<div class="container">
+    <section class="posts">
+        <article>
+            <h2>{{ article.title }}</h2>
+            <p><strong>Author:</strong> {{ article.author }}</p>
+            <p class="description">{{ article.description }}</p>
+        </article>
+        <button><a href="{% url 'homepage' %}">Back To Home</a></button>
+        
+    
+    {% if not article.comments.all %}
+       <a href="{% url 'add_comment' article.pk %}">Add One</a>
+
+    {% else %}
+    <button><a href="{% url 'add_comment' post.pk %}">Add Comment</a></button>
+        {% for comment in article.comments.all %}
+          <p>{{comment.name}} -- {{comment.comment_body}} -- <br>-- {{comment.date_time}}      
+        </p><br>
+
+        {% endfor %}
+
+    {% endif %}
+</section>
+</div>

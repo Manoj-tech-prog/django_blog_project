@@ -1,0 +1,47 @@
+*{
+    background: pink;
+}
+
+.container{
+    display: flex;                  /* Enable flexbox layout */
+    justify-content: center;        /* Center horizontally */
+    align-items: center;            /* Center vertically */
+    height: 100vh;                  /* Full viewport height (adjust as needed) */
+}
+
+.posts {
+    border: 1px solid white;         /* Border around the posts container */
+    text-align: center;              /* Center text inside the posts container */
+    width: 500px;                    /* Set the width of the posts container */
+    margin: 0 auto;                 /* Center the posts container horizontally */
+    padding: 20px;                  /* Optional: Add padding inside the container */
+    border-radius: 5px;             /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a 3D effect */
+}
+
+
+.description {
+    width: 200px;                 /* Set the width of the box */
+    padding: 10px;                /* Add some padding inside the box */
+    border: 1px solid #8e8686;       /* Add a border around the box */
+    border-radius: 5px;           /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for better visual effect */
+    text-align: center;           /* Center the text horizontally */
+    margin: 0 auto;               /* Center the box horizontally if it's in a block-level container */
+    overflow-wrap: break-word;    /* Ensure long words are broken to fit within the box */
+    word-wrap: break-word;        /* Fallback for older browsers */
+    margin-bottom: 15px;
+}
+
+button{
+    border: none;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid purple;
+}
+
+button a{    
+    text-decoration: none;
+    color:rgb(238, 16, 194);
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+}

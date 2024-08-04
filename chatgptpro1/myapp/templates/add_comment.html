@@ -1,0 +1,14 @@
+<h1>Now you can add Comment Here</h1>
+<div class="comment-container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Add Comment</h2>
+        {% for field in form %}
+        <div class="form-group">
+            {{field.label_tag}}
+            {{field}}
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</div>

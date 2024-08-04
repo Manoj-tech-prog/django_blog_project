@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+</head>
+<body>
+    <style>
+         .main-content {
+            padding: 20px;
+        }
+
+        .contact-content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-content h2 {
+            margin-top: 0;
+        }
+
+        .contact-content form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-content form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contact-content form input, 
+        .contact-content form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .contact-content form textarea {
+            resize: vertical;
+        }
+
+        .contact-content form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-content form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <div id="contact" class="contact-content">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need further information, please don't hesitate to contact us using the form below. We will get back to you as soon as possible.</p>
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
